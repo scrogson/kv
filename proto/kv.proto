@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package kv;
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  optional int64 value = 1;
+}
+
+message PutRequest {
+  string key = 1;
+  int64 value = 2;
+}
+
+message PutResponse {
+  optional int64 value = 1;
+}
+
+message DelRequest {
+  string key = 1;
+}
+
+message DelResponse {
+  optional int64 value = 1;
+}
+
+message MinRequest {}
+
+message MinResponse {
+  optional int64 value = 1;
+}
+
+message MaxRequest {}
+
+message MaxResponse {
+  optional int64 value = 1;
+}
+
+message SumRequest {}
+
+message SumResponse {
+  int64 value = 1;
+}
+
+service Kv {
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc Put(PutRequest) returns (PutResponse) {}
+  rpc Del(DelRequest) returns (DelResponse) {}
+  rpc Min(MinRequest) returns (MinResponse) {}
+  rpc Max(MaxRequest) returns (MaxResponse) {}
+  rpc Sum(SumRequest) returns (SumResponse) {}
+}
