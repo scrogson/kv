@@ -1,10 +1,5 @@
-use proto::kv_client::KvClient;
-use proto::{DelRequest, GetRequest, MaxRequest, MinRequest, PutRequest, SumRequest};
+use kv::{DelRequest, GetRequest, KvClient, MaxRequest, MinRequest, PutRequest, SumRequest};
 use tonic::Request;
-
-mod proto {
-    tonic::include_proto!("kv");
-}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

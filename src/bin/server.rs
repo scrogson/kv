@@ -1,15 +1,9 @@
-mod storage;
-mod proto {
-    tonic::include_proto!("kv");
-}
-
-use proto::kv_server::{Kv, KvServer};
-use proto::{
-    DelRequest, DelResponse, GetRequest, GetResponse, MaxRequest, MaxResponse, MinRequest,
-    MinResponse, PutRequest, PutResponse, SumRequest, SumResponse,
+use kv::InMemory;
+use kv::{
+    DelRequest, DelResponse, GetRequest, GetResponse, Kv, KvServer, MaxRequest, MaxResponse,
+    MinRequest, MinResponse, PutRequest, PutResponse, SumRequest, SumResponse,
 };
 use std::sync::Arc;
-use storage::InMemory;
 use tokio::sync::RwLock;
 use tonic::{transport::Server, Request, Response, Status};
 
