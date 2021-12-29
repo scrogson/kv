@@ -39,20 +39,26 @@ fn parse_input(input: &str) -> Result<Command, ParseError> {
         Some("GET") => {
             let key = input
                 .next()
+                .map(|v| v.trim())
                 .ok_or_else(|| ParseError::MissingKey("GET".into()))?;
             Ok(Command::Get(key.to_string()))
         }
         Some("PUT") => {
             let key = input
                 .next()
+                .map(|v| v.trim())
                 .ok_or_else(|| ParseError::MissingKey("PUT".into()))?;
-            let value = input.next().ok_or_else(|| ParseError::MissingValue)?;
+            let value = input
+                .next()
+                .map(|v| v.trim())
+                .ok_or_else(|| ParseError::MissingValue)?;
             let value = value.parse::<i64>()?;
             Ok(Command::Put(key.to_string(), value))
         }
         Some("DEL") => {
             let key = input
                 .next()
+                .map(|v| v.trim())
                 .ok_or_else(|| ParseError::MissingKey("DEL".into()))?;
             Ok(Command::Del(key.to_string()))
         }
